@@ -23,6 +23,11 @@ io.on('connection',(socket)=>{
     //listen to new msg from client
     socket.on('createMsg',(newMsg)=>{
         console.log('createMsg',newMsg);
+        io.emit('newMsg',{
+            from: newMsg.from,
+            text: newMsg.text,
+            createdAt:new Date().getTime()
+        })
     });
 
      //send new msg from server to client
